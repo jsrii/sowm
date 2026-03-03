@@ -3,28 +3,29 @@
 
 #define MOD Mod4Mask
 
-const char* menu[]    = {"dmenu_run",      0};
-const char* term[]    = {"st",             0};
+//const char* menu[]    = {"rofi", "-show", "drun", "-theme", "~/.config/rofi/style.rasi", 0};
+const char* menu[]    = {"rofi", "-show", "-drun", 0};
+const char* term[]    = {"alacritty",             0};
 const char* scrot[]   = {"scr",            0};
 const char* briup[]   = {"bri", "10", "+", 0};
 const char* bridown[] = {"bri", "10", "-", 0};
 const char* voldown[] = {"amixer", "sset", "Master", "5%-",         0};
 const char* volup[]   = {"amixer", "sset", "Master", "5%+",         0};
 const char* volmute[] = {"amixer", "sset", "Master", "toggle",      0};
-const char* colors[]  = {"bud", "/home/goldie/Pictures/Wallpapers", 0};
+const char* exit_sowm[] = {"killall", "Xorg", 0}; 
+// const char* initializaion[] = {"~/.config/sowm/init.sh"};                                            
 
 static struct key keys[] = {
-    {MOD,      XK_q,   win_kill,   {0}},
-    {MOD,      XK_c,   win_center, {0}},
+    {MOD,      XK_c,   win_kill,   {0}},
+    {MOD,      XK_g,   win_center, {0}},
     {MOD,      XK_f,   win_fs,     {0}},
 
     {Mod1Mask,           XK_Tab, win_next,   {0}},
     {Mod1Mask|ShiftMask, XK_Tab, win_prev,   {0}},
 
-    {MOD, XK_d,      run, {.com = menu}},
-    {MOD, XK_w,      run, {.com = colors}},
+    {MOD, XK_Return,      run, {.com = menu}},
     {MOD, XK_p,      run, {.com = scrot}},
-    {MOD, XK_Return, run, {.com = term}},
+    {MOD, XK_q, run, {.com = term}},
 
     {0,   XF86XK_AudioLowerVolume,  run, {.com = voldown}},
     {0,   XF86XK_AudioRaiseVolume,  run, {.com = volup}},
@@ -44,6 +45,16 @@ static struct key keys[] = {
     {MOD|ShiftMask, XK_5, win_to_ws, {.i = 5}},
     {MOD,           XK_6, ws_go,     {.i = 6}},
     {MOD|ShiftMask, XK_6, win_to_ws, {.i = 6}},
+
+
+    // New window management functionality
+    {MOD,     XK_Left,    win_left,     {0}},
+    {MOD,     XK_Right,   win_right,    {0}},
+    {MOD,     XK_Up,      win_fs_part,  {0}},
+
+    {MOD,     XK_m,       run,  {.com = exit_sowm}},
+
+    {MOD,     XK_i,       run,  {.com = initializaion}},
 };
 
 #endif

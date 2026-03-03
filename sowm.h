@@ -9,6 +9,9 @@
     XGetGeometry(d, W, &(Window){0}, gx, gy, gw, gh, \
                  &(unsigned int){0}, &(unsigned int){0})
 
+#define win_set(W, gx, gy, gw, gh) \
+    XMoveResizeWindow(d, W, gx, gy, gw, gh)
+
 // Taken from DWM. Many thanks. https://git.suckless.org/dwm
 #define mod_clean(mask) (mask & ~(numlock|LockMask) & \
         (ShiftMask|ControlMask|Mod1Mask|Mod2Mask|Mod3Mask|Mod4Mask|Mod5Mask))
@@ -33,6 +36,17 @@ typedef struct client {
     Window w;
 } client;
 
+enum mouse_rel_window{
+  TOP,
+  TOP_RIGHT,
+  RIGHT,
+  BOTTOM_RIGHT,
+  BOTTOM,
+  BOTTOM_LEFT,
+  LEFT,
+  TOP_LEFT
+}
+
 void button_press(XEvent *e);
 void button_release(XEvent *e);
 void configure_request(XEvent *e);
@@ -54,5 +68,8 @@ void win_prev(const Arg arg);
 void win_next(const Arg arg);
 void win_to_ws(const Arg arg);
 void ws_go(const Arg arg);
+void win_left(const Arg arg);
+void win_right(const Arg arg);
+void win_fs_part(const Arg arg);
 
 static int xerror() { return 0; }

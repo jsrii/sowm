@@ -133,15 +133,35 @@ void win_center(const Arg arg) {
     XMoveWindow(d, cur->w, (sw - ww) / 2, (sh - wh) / 2);
 }
 
+void win_left(const Arg arg){
+  if(!cur) return;
+
+  win_set(cur->w, 10, 10, (sw/2) - 10, sh - 20);
+}
+
+void win_right(const Arg arg){
+  if(!cur) return;
+
+  win_set(cur->w, sw/2, 10, (sw/2) - 10, sh - 20);
+}
+
+void win_fs_part(const Arg arg){
+  if(!cur) return;
+
+  win_set(cur->w, 10, 10, sw - 20, sh -20);
+}
+
 void win_fs(const Arg arg) {
     if (!cur) return;
 
     if ((cur->f = cur->f ? 0 : 1)) {
         win_size(cur->w, &cur->wx, &cur->wy, &cur->ww, &cur->wh);
-        XMoveResizeWindow(d, cur->w, 0, 0, sw, sh);
+        // XMoveResizeWindow(d, cur->w, 0, 0, sw, sh);
+        win_set(cur->w, 0, 0, sw, sh);
 
     } else {
-        XMoveResizeWindow(d, cur->w, cur->wx, cur->wy, cur->ww, cur->wh);
+        // XMoveResizeWindow(d, cur->w, cur->wx, cur->wy, cur->ww, cur->wh);
+        win_set(cur->w, cur->wx, cur->wy, cur->ww, cur->wh);
     }
 }
 
