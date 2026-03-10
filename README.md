@@ -38,20 +38,24 @@ Patches available here: https://github.com/dylanaraps/sowm/pulls
 
 **Window Management / Functionality**
 
-| combo                      | action                 |
-| -------------------------- | -----------------------|
-| `Mouse`                    | focus under cursor     |
-| `MOD4` + `Left Mouse`      | move window            |
-| `MOD4` + `Right Mouse`     | resize window          |
-| `MOD4` + `Left Arrow`      | move window left       |
-| `MOD4` + `Right Arrow`     | move window right      |
-| `MOD4` + `f`               | maximize toggle        |
-| `MOD4` + `g`               | center window          |
-| `MOD4` + `c`               | kill window            |
-| `MOD4` + `1-6`             | desktop swap           |
-| `MOD4` + `Shift` +`1-6`    | send window to desktop |
-| `MOD1` + `TAB` (*alt-tab*) | focus cycle            |
-| `MOD4` + `m`               | exit sowm              |
+| combo                                         | action                 |
+| ----------------------------------------------| -----------------------|
+| `Mouse`                                       | focus under cursor     |
+| `MOD4` + `Left Mouse`                         | move window            |
+| `MOD4` + `Right Mouse`                        | resize window          |
+| `MOD4` + `Left Arrow`                         | move window left       |
+| `MOD4` + `Right Arrow`                        | move window right      |
+| `MOD4` + `SHIFT` + `U/R/L/D Arrow`            | move window in direc.  |
+| `MOD4` + `MOD1` (*alt*) + `U/R/L/D Arrow`     | resiz. window in direc.|
+| `MOD4` + `f`                                  | maximize toggle        |
+| `MOD4` + `g`                                  | center window          |
+| `MOD4` + `c`                                  | kill window            |
+| `MOD4` + `1-6`                                | desktop swap           |
+| `MOD4` + `Shift` +`1-6`                       | send window to desktop |
+| `MOD1` + `TAB` (*alt-tab*)                    | focus cycle            |
+| `MOD4` + `m`                                  | exit sowm              |
+
+Resizing via keybinds is done from top-left origin of window.
 
 **Programs**
 
