@@ -24,8 +24,8 @@ static struct key keys[] = {
     {Mod1Mask|ShiftMask, XK_Tab, win_prev,   {0}},
 
     {MOD, XK_Return,      run, {.com = menu}},
-    {MOD, XK_p,      run, {.com = scrot}},
-    {MOD, XK_q, run, {.com = term}},
+    {MOD, XK_p,           run, {.com = scrot}},
+    {MOD, XK_q,           run, {.com = term}},
 
     {0,   XF86XK_AudioLowerVolume,  run, {.com = voldown}},
     {0,   XF86XK_AudioRaiseVolume,  run, {.com = volup}},
@@ -48,9 +48,19 @@ static struct key keys[] = {
 
 
     // New window management functionality
-    {MOD,     XK_Left,    win_left,     {0}},
-    {MOD,     XK_Right,   win_right,    {0}},
-    {MOD,     XK_Up,      win_fs_part,  {0}},
+    {MOD,     XK_Left,    win_align,     {.i = 0}},
+    {MOD,     XK_Right,   win_align,     {.i = 1}},
+    {MOD,     XK_Up,      win_fs_part,   {0}},
+
+    {MOD|ShiftMask, XK_Up,    win_key_move,     {.i = 0}},
+    {MOD|ShiftMask, XK_Right, win_key_move,     {.i = 1}},
+    {MOD|ShiftMask, XK_Down,  win_key_move,     {.i = 2}},
+    {MOD|ShiftMask, XK_Left,  win_key_move,     {.i = 3}},
+
+    {MOD|Mod1Mask, XK_Up,     win_key_resize,   {.i = 0}},
+    {MOD|Mod1Mask, XK_Right,  win_key_resize,   {.i = 1}},
+    {MOD|Mod1Mask, XK_Down,   win_key_resize,   {.i = 2}},
+    {MOD|Mod1Mask, XK_Left,   win_key_resize,   {.i = 3}},
 
     {MOD,     XK_m,       run,  {.com = exit_sowm}},
 

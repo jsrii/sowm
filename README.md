@@ -13,8 +13,11 @@ An itsy bitsy floating window manager (*220~ sloc!*).
 - Titlebars (*[through patch](https://github.com/dylanaraps/sowm/pull/57)*)
 - Added by [jsrii](https://github.com/jsrii):
     - New window management shortcuts
+    - Window resizing with arrow-keys
+    - Moving window with arrow-keys
+    - Centering mouse inside window when moved via keybinds
     - To come:
-        - Better window resizing
+        - Better window resizing (w/ mouse)
         - Better window killing (killing specific child process instead of parent)
 
 <a href="https://user-images.githubusercontent.com/6799467/66687814-8cd9f800-ec73-11e9-97b8-6ae77876bd1b.jpg"><img src="https://user-images.githubusercontent.com/6799467/66687814-8cd9f800-ec73-11e9-97b8-6ae77876bd1b.jpg" width="43%" align="right"></a>

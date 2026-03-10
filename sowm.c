@@ -123,7 +123,12 @@ void win_del(Window w) {
 }
 
 void win_kill(const Arg arg) {
-    if (cur) XKillClient(d, cur->w);
+    if (cur){
+      Window c_w;
+      int f;
+      XGetInputFocus(d, &c_w, &f);
+      XKillClient(d, c_w);
+    } 
 }
 
 void win_center(const Arg arg) {
@@ -133,22 +138,52 @@ void win_center(const Arg arg) {
     XMoveWindow(d, cur->w, (sw - ww) / 2, (sh - wh) / 2);
 }
 
-void win_left(const Arg arg){
-  if(!cur) return;
+void win_align(const Arg arg){
+  if(arg.i < 0 || arg.i > 1 || !cur) return;
+  if(arg.i == 0) win_set(cur->w, 10, 10, (sw/2) - 10, sh - 44);
+  if(arg.i == 1) win_set(cur->w, sw/2, 10, (sw/2) - 10, sh -44);
 
-  win_set(cur->w, 10, 10, (sw/2) - 10, sh - 20);
+  win_size(cur->w, &(int){0}, &(int){0}, &ww, &wh);
+  XWarpPointer(d, None,cur->w, 0, 0, 0, 0, ww/2, wh/2);
 }
 
-void win_right(const Arg arg){
-  if(!cur) return;
 
-  win_set(cur->w, sw/2, 10, (sw/2) - 10, sh - 20);
+void win_key_move(const Arg arg){
+  if(arg.i < 0 || arg.i > 3 || !cur) return;
+  int x, y;
+  unsigned int w, h;
+  win_size(cur->w, &x, &y, &w, &h);
+
+  if(arg.i == 0) XMoveWindow(d, cur->w, x, y - 20);
+  if(arg.i == 1) XMoveWindow(d, cur->w, x + 20, y);
+  if(arg.i == 2) XMoveWindow(d, cur->w, x, y + 20);
+  if(arg.i == 3) XMoveWindow(d, cur->w, x - 20, y);
+
+  win_size(cur->w, &(int){0}, &(int){0}, &ww, &wh);
+  XWarpPointer(d, None, cur->w, 0, 0, 0, 0, ww/2, wh/2);
 }
+
+void win_key_resize(const Arg arg){
+    if(!cur) return;
+    
+    int x, y;
+    unsigned int w, h;
+    win_size(cur->w, &x, &y, &w, &h);
+    
+    if(arg.i == 0) XResizeWindow(d, cur->w, w, MAX(1, h - 20));
+    if(arg.i == 1) XResizeWindow(d, cur->w, w + 20, h);
+    if(arg.i == 2) XResizeWindow(d, cur->w, w, h + 20);
+    if(arg.i == 3) XResizeWindow(d, cur->w, MAX(1, w - 20), h);
+
+    win_size(cur->w, &(int){0}, &(int){0}, &ww, &wh);
+    XWarpPointer(d, None,cur->w, 0, 0, 0, 0, ww/2, wh/2);
+}
+
 
 void win_fs_part(const Arg arg){
   if(!cur) return;
 
-  win_set(cur->w, 10, 10, sw - 20, sh -20);
+  win_set(cur->w, 10, 10, sw - 20, sh -44);
 }
 
 void win_fs(const Arg arg) {

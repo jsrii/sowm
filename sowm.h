@@ -36,17 +36,6 @@ typedef struct client {
     Window w;
 } client;
 
-enum mouse_rel_window{
-  TOP,
-  TOP_RIGHT,
-  RIGHT,
-  BOTTOM_RIGHT,
-  BOTTOM,
-  BOTTOM_LEFT,
-  LEFT,
-  TOP_LEFT
-}
-
 void button_press(XEvent *e);
 void button_release(XEvent *e);
 void configure_request(XEvent *e);
@@ -68,8 +57,9 @@ void win_prev(const Arg arg);
 void win_next(const Arg arg);
 void win_to_ws(const Arg arg);
 void ws_go(const Arg arg);
-void win_left(const Arg arg);
-void win_right(const Arg arg);
+void win_align(const Arg arg);
+void win_key_move(const Arg arg);
+void win_key_resize(const Arg arg);
 void win_fs_part(const Arg arg);
 
 static int xerror() { return 0; }
